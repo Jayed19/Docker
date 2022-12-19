@@ -1,0 +1,95 @@
+PS C:\Users\hp\Desktop\docker_test> node app.js
+Hello World
+PS C:\Users\hp\Desktop\docker_test> docker build -t dockter_test .
+[+] Building 10.6s (3/3) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                           0.2s
+ => => transferring dockerfile: 97B                                                                                                                            0.0s
+ => [internal] load .dockerignore                                                                                                                              0.1s
+ => => transferring context: 2B                                                                                                                                0.0s
+ => ERROR [internal] load metadata for docker.io/library/node:alpine                                                                                          10.4s
+------
+ > [internal] load metadata for docker.io/library/node:alpine:
+------
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: failed to do request: Head "https://registry-1.docker.io/v2/library/node/manifests/alpine": net/http: TLS handshake timeout
+PS C:\Users\hp\Desktop\docker_test> docker pull mcr.microsoft.com/dotnet/sdk:5.0
+5.0: Pulling from dotnet/sdk
+c1ad9731b2c7: Pull complete
+169ba0027942: Pull complete
+c4c86b92f556: Pull complete
+e76245086e24: Pull complete
+0bf07af7e5b6: Pull complete
+85081c9db788: Pull complete
+5fdeb3a38fe8: Pull complete
+d395fb0767b4: Pull complete
+Digest: sha256:3ff465d940de3e2c727794d92fd7bb649c498d4abd91bc9213ea7831ebf01f1e
+Status: Downloaded newer image for mcr.microsoft.com/dotnet/sdk:5.0
+mcr.microsoft.com/dotnet/sdk:5.0
+PS C:\Users\hp\Desktop\docker_test> docker build -t dockter_test .
+[+] Building 100.6s (8/8) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                           0.1s
+ => => transferring dockerfile: 31B                                                                                                                            0.0s 
+ => [internal] load .dockerignore                                                                                                                              0.1s 
+ => => transferring context: 2B                                                                                                                                0.0s 
+ => [internal] load metadata for docker.io/library/node:alpine                                                                                                 3.4s 
+ => [internal] load build context                                                                                                                              0.1s
+ => => transferring context: 158B                                                                                                                              0.0s 
+ => [1/3] FROM docker.io/library/node:alpine@sha256:3ed634e0f15d3e05a1918c3949963508f7ed56350cf94156e6d804ae577849fa                                          95.5s 
+ => => resolve docker.io/library/node:alpine@sha256:3ed634e0f15d3e05a1918c3949963508f7ed56350cf94156e6d804ae577849fa                                           0.0s 
+ => => sha256:d0b02b1ec5534efb43a926069915c982aec745a8eb0611ebcffc4cafaa4e4a74 1.16kB / 1.16kB                                                                 0.0s
+ => => sha256:f01bef8b5e9265c7d0f283d1fd9d0cdcb84f75fd7c3546a7c1da5c2049064285 6.44kB / 6.44kB                                                                 0.0s 
+ => => sha256:c158987b05517b6f2c5913f3acef1f2182a32345a304fe357e3ace5fadcad715 3.37MB / 3.37MB                                                                14.1s 
+ => => sha256:27ae9ce8b069146ce8506e0aa367ca24753a64b743e4b6e9bd8d1f876051d03a 47.73MB / 47.73MB                                                              92.7s 
+ => => sha256:ab5501735aae1e75c640bc26624c2daff7ea894126e950ca633ed8b9d9b0eb6a 2.35MB / 2.35MB                                                                 6.9s 
+ => => sha256:3ed634e0f15d3e05a1918c3949963508f7ed56350cf94156e6d804ae577849fa 1.43kB / 1.43kB                                                                 0.0s 
+ => => sha256:9ce0a5833ea2e805996e2300f45658a1e45304ffef38db5ed83901896a174093 450B / 450B                                                                     7.2s
+ => => extracting sha256:c158987b05517b6f2c5913f3acef1f2182a32345a304fe357e3ace5fadcad715                                                                      0.1s
+ => => extracting sha256:27ae9ce8b069146ce8506e0aa367ca24753a64b743e4b6e9bd8d1f876051d03a                                                                      1.5s
+ => => extracting sha256:ab5501735aae1e75c640bc26624c2daff7ea894126e950ca633ed8b9d9b0eb6a                                                                      0.1s
+ => => extracting sha256:9ce0a5833ea2e805996e2300f45658a1e45304ffef38db5ed83901896a174093                                                                      0.0s 
+ => [2/3] COPY . /app                                                                                                                                          1.1s 
+ => [3/3] WORKDIR /app                                                                                                                                         0.1s 
+ => exporting to image                                                                                                                                         0.1s 
+ => => exporting layers                                                                                                                                        0.1s 
+ => => writing image sha256:ca4087f198868b1c9c6d6247b57edcfacb92d2c6bebec758c66088a9eff6654a                                                                   0.0s 
+ => => naming to docker.io/library/dockter_test                                                                                                                0.0s 
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+PS C:\Users\hp\Desktop\docker_test> docker images
+REPOSITORY                     TAG       IMAGE ID       CREATED         SIZE
+dockter_test                   latest    ca4087f19886   3 minutes ago   175MB
+mcr.microsoft.com/dotnet/sdk   5.0       9fec788bd1f9   6 months ago    632MB
+PS C:\Users\hp\Desktop\docker_test> docker run docker-test
+Unable to find image 'docker-test:latest' locally
+docker: Error response from daemon: pull access denied for docker-test, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+REPOSITORY                     TAG       IMAGE ID       CREATED         SIZE
+dockter_test                   latest    ca4087f19886   7 minutes ago   175MB
+mcr.microsoft.com/dotnet/sdk   5.0       9fec788bd1f9   6 months ago    632MBPS C:\Users\hp\Desktop\docker_test> docker run dockter_test
+Hello World
+PS C:\Users\hp\Desktop\docker_test> docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: jayed19Password:
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account.
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+PS C:\Users\hp\Desktop\docker_test> docker tag ca4087f19886 jayed19/docker-test
+PS C:\Users\hp\Desktop\docker_test> docker images
+REPOSITORY                     TAG       IMAGE ID       CREATED          SIZE
+jayed19/docker-test            latest    ca4087f19886   12 minutes ago   175MB
+dockter_test                   latest    ca4087f19886   12 minutes ago   175MB
+mcr.microsoft.com/dotnet/sdk   5.0       9fec788bd1f9   6 months ago     632MB
+PS C:\Users\hp\Desktop\docker_test> docker push jayed19/docker-test
+Using default tag: latest
+The push refers to repository [docker.io/jayed19/docker-test]
+5f70bf18a086: Pushed
+d896bb54418f: Pushed
+e341def868c7: Mounted from library/node
+af7f08457991: Mounted from library/node
+6f98ae799fc9: Mounted from library/node
+ded7a220bb05: Mounted from library/node
+latest: digest: sha256:98d467b6ca5da181bda03a7d05bdfc7b62675df9fdcf941f118288c935d89e53 size: 1571
+PS C:\Users\hp\Desktop\docker_test>
+
+
+
