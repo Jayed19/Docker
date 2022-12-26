@@ -1,3 +1,4 @@
+Steps of Dev Machine:
 Step1: open cmd: pg_dump -U username -h localhost databasename >> dump.sql
 Step2: Create a folder for createing a docker image and put dump.sql file there.
 Step3: Create Dockerfile file using vscode going to new folder directory.
@@ -17,6 +18,7 @@ Step9: docker images
 Step10: docker push jayed19/my-postgres-db
 
 
+Steps of Tester / Server Machine:
  Docker Pull in linux Machine where postgres is not setup:
 Step11: sudo docker pull jayed19/my-postgres-db [docker login have to perform first]
 
