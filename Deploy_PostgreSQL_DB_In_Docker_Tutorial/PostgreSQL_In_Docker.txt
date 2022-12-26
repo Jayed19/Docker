@@ -1,0 +1,33 @@
+Step1: open cmd: pg_dump -U username -h localhost databasename >> dump.sql
+Step2: Create a folder for createing a docker image and put dump.sql file there.
+Step3: Create Dockerfile file using vscode going to new folder directory.
+step4: Content of Docker file
+FROM postgres
+ENV POSTGRES_USER=qbd
+ENV POSTGRES_PASSWORD jayed19P
+ENV POSTGRES_DB qbd
+COPY dump.sql /docker-entrypoint-initdb.d/
+
+Step5:docker build -t my-postgres-db ./
+Step6: docker images -a  [collect image_id of my-postgres-db]
+
+Step7: docker login
+Step8: docker tag image_id jayed19/my-postgres-db
+Step9: docker images
+Step10: docker push jayed19/my-postgres-db
+
+
+ Docker Pull in linux Machine where postgres is not setup:
+Step11: sudo docker pull jayed19/my-postgres-db [docker login have to perform first]
+
+Step12: See the container list of docker(Linux):
+sudo docker container ls -a
+For removing container: sudo docker rm container_id
+See the images list: sudo docker images
+For removing image: sudo docker image rm image_id
+
+Step12: For Running PostgreSQL in detach mode(-d):
+sudo docker run -d --name jayed19_qbd_image_container -p 5433:5432 jayed19/qbd_image
+
+Step13: Connect from external source: CMD: psql -U qbd -h 192.168.102.223 -p 5433 
+
